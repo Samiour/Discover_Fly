@@ -1,3 +1,4 @@
+font-family: 'Roboto Condensed', sans-serif;
 *{
     padding: 0;
     margin: 0;
@@ -119,4 +120,13 @@ nav ul li a:hover, a.active{
 .amount{
     display: flex;
     justify-content: space-between;
+}
+.plus-minius-button{
+   background-color: #3352F2;
+   color: white;
+   
+  
+}
+.first-class{
+    margin: 2%;
 }

@@ -7,8 +7,10 @@
     <title>Flight Booking</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -51,21 +53,35 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="firstClass-seat-id" class="inp-style inp-width" type="number" name="">
                 </div>
-                <div class="plus-minus-btn">
-                    <p>+ -</p>
+                
+
+                
+                <div class="plus-minius-btn first-class">
+                    <p>
+                        <button onclick="handleSeatQuantities('firstClass',true)" id="firstClass-button-id" class="btn btn-default plus-minius-button" >+</button> 
+                        <button onclick="handleSeatQuantities('firstClass',false)"  id="firstClass-button-id" class="btn btn-default plus-minius-button" >-</button>
+                       
+                     </p>
+                   
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+
+                    <input id="economy-seat-id" class="inp-style inp-width" type="number" name="">
+
                 </div>
-                <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
-                </div>
+                <div class="plus-minus-btn economy"> 
+
+                     <p>
+                        <button onclick="handleSeatQuantities('economy',true)" id="economy-button-id" class="btn btn-default plus-minius-button">+</button> 
+                        <button onclick="handleSeatQuantities('economy',false)" id="economy-button-id" class="btn btn-default plus-minius-button">-</button>  
+                    </p> 
+                </div> 
             </div>
             <div class="calculations">
                 <div class="amount">
@@ -73,7 +89,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p id="total-price">$500</p>
                     </div>
                 </div>
 
@@ -82,7 +98,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="tax-input" >$50</p>
                     </div>
                 </div>
                 <hr>
@@ -91,7 +107,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p id="grand-total" >$550</p>
                     </div>
                 </div>
             </div>
@@ -102,9 +118,129 @@
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
+
+
+        <script>
+            //This is for the economy addition
+        //  document.getElementById('economy-plus-button-id').addEventListener('click',function(){
+        //      const economyInput=document.getElementById('economy-seat-id');
+              
+        //     var economySeat=parseInt(economyInput.value);
+            
+        //   if (isNaN(economySeat)) economySeat = 0; 
+            
+        //     const economyNewSeat = economySeat+1;
+        //     economyInput.value= economyNewSeat;
+            
+        //  })
+        //   //this is for the minius button(economy)
+        //  document.getElementById('economy-minius-button-id').addEventListener('click',function(){
+        //      const economyInput=document.getElementById('economy-seat-id');
+              
+        //     var economySeat=parseInt(economyInput.value);
+            
+        //   if (isNaN(economySeat)) economySeat = 0; 
+            
+        //     if(economySeat!=0){
+        //         const economyNewSeat = economySeat-1;
+        //     economyInput.value= economyNewSeat;
+        //     }
+            
+            
+        //  })
+        //  //this is for the first class plus button
+        //  document.getElementById('firstClass-plus-button-id').addEventListener('click',function(){
+        //      const economyInput=document.getElementById('firstClass-seat-id');
+              
+        //     var economySeat=parseInt(economyInput.value);
+            
+        //   if (isNaN(economySeat)) economySeat = 0; 
+            
+        //     const economyNewSeat = economySeat+1;
+        //     economyInput.value= economyNewSeat;
+            
+        //  })
+
+        //  //this is for the minius button (first class)
+        //  document.getElementById('firstClass-minius-button-id').addEventListener('click',function(){
+        //      const economyInput=document.getElementById('firstClass-seat-id');
+              
+        //     var economySeat=parseInt(economyInput.value);
+            
+        //   if (isNaN(economySeat)) economySeat = 0; 
+            
+          
+            
+        //     if(economySeat!=0){
+        //         const economyNewSeat = economySeat-1;
+        //     economyInput.value= economyNewSeat;
+        //     }
+            
+            
+        //  })
+
+         
+         function handleSeatQuantities(className,isIncrease){
+            
+             const seatInput=document.getElementById(className+'-seat-id');
+              
+            var planeSeat=parseInt(seatInput.value);
+
+            
+          if (isNaN(planeSeat)) planeSeat = 0; 
+
+          if(isIncrease==true){
+            const planeNewSeat = planeSeat+1;
+            seatInput.value= planeNewSeat;
+          }
+           if(isIncrease==false && planeSeat!=0){
+                  
+                const planeNewSeat = planeSeat-1;
+            seatInput.value= planeNewSeat;
+           
+          }
+
+            calculateTotal();
+         
+            }
+
+            function getInputValue(className){
+               const seatInput = document.getElementById(className+'-seat-id');
+                const seatCount = parseInt(seatInput.value);
+                return seatCount;
+            }
+
+            function calculateTotal(){
+               
+               var firstSeatCount=getInputValue('firstClass'); 
+               
+               var ecoSeatCount=getInputValue('economy');
+
+               if (isNaN( firstSeatCount))  firstSeatCount= 0;
+               if (isNaN(  ecoSeatCount))   ecoSeatCount= 0;  
+               
+               
+
+               const totalPrice = (firstSeatCount*150)+ ( ecoSeatCount*100);
+               document.getElementById('total-price').innerText='$'+ totalPrice;
+
+               const tax =Math.round (totalPrice*0.1);
+               document.getElementById('tax-input').innerText='$'+tax;
+
+               const grandTotal=totalPrice+tax;
+              document.getElementById('grand-total').innerText='$'+grandTotal;
+
+           }
+         
+
+
+        </script>
+
+
     </section>
 
-    <!--Thank You-->
+   
 </body>
 
 </html>
+         
